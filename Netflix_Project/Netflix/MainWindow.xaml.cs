@@ -24,5 +24,10 @@ namespace Netflix
         {
             InitializeComponent();
         }
+
+        private void BtnExit_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
