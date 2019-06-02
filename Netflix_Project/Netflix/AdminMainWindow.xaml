@@ -1,11 +1,11 @@
-﻿<Window x:Class="Netflix.MainWindow"       
+﻿<Window x:Class="Netflix.AdminMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Netflix"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Title="MainWindow" Height="600" Width="1080" ResizeMode="NoResize" 
+        mc:Ignorable="d" Title="AdminMainWindow" Height="600" Width="1080" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontSize="13"
@@ -13,9 +13,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        DataContext="{StaticResource MainVM}"
-        >
+        FontFamily="{DynamicResource MaterialDesignFont}">
+
     <Window.Resources>
         <Storyboard x:Key="CloseMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
@@ -66,7 +65,7 @@
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="AccountCircle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Đăng Ký / Đăng Nhập" Margin="10"/>
+                            <TextBlock Text="Admin01" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="45" Padding="0">
@@ -87,7 +86,7 @@
                             <TextBlock Text="Thống kê" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
-                    
+
                     <ListViewItem Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>

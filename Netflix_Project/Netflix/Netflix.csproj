@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -42,7 +48,10 @@
       <HintPath>..\packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +70,54 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminMainWindow.xaml.cs">
+      <DependentUpon>AdminMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="category.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="favorite_videos.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetflixModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetflixModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="payment.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playlist.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playlist_video.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="video.cs">
+      <DependentUpon>NetflixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="AdminMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +130,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResourceXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -92,7 +153,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <EntityDeploy Include="NetflixModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NetflixModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="NetflixModel.edmx.diagram">
+      <DependentUpon>NetflixModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,6 +173,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\images\Netflix-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NetflixModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NetflixModel.edmx</DependentUpon>
+      <LastGenOutput>NetflixModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="NetflixModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NetflixModel.edmx</DependentUpon>
+      <LastGenOutput>NetflixModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

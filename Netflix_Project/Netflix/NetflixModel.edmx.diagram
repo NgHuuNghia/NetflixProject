@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ac8cd69897042e49b0ca2a3f86d0661" Name="Diagram1">
+        <EntityTypeShape EntityType="NetflixModel.category" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.favorite_videos" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.payment" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.playlist" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.playlist_video" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.user" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetflixModel.video" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="NetflixModel.FK_videos_categories" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_favorite_videos_users" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_favorite_videos_videos" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_payments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_playlist_users" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_playlist_video_playlist" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_playlist_video_users" ManuallyRouted="false" />
+        <AssociationConnector Association="NetflixModel.FK_playlist_video_videos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

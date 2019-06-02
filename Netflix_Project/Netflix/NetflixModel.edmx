@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NetflixModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="favorite_videos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="video_id" Type="int" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="purchase_date" Type="datetime" />
+          <Property Name="expiration_date" Type="datetime" />
+          <Property Name="account_type" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="playlist">
+          <Key>
+            <PropertyRef Name="playlist_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="playlist_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playlist_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="playlist_video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playlist_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="video_id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="account_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" />
+          <Property Name="account_type" Type="nvarchar" MaxLength="255" />
+          <Property Name="payment_gmail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="videos">
+          <Key>
+            <PropertyRef Name="video_id" />
+          </Key>
+          <Property Name="video_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="video_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="video_time" Type="int" />
+          <Property Name="video_rel_country" Type="nvarchar" MaxLength="255" />
+          <Property Name="category_id" Type="int" />
+          <Property Name="release_date" Type="date" />
+          <Property Name="director" Type="nvarchar" MaxLength="255" />
+          <Property Name="writers" Type="nvarchar" MaxLength="255" />
+          <Property Name="stars" Type="nvarchar" MaxLength="255" />
+          <Property Name="rating" Type="float" />
+        </EntityType>
+        <Association Name="FK_favorite_videos_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="favorite_videos" Type="Self.favorite_videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="favorite_videos">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favorite_videos_videos">
+          <End Role="videos" Type="Self.videos" Multiplicity="0..1" />
+          <End Role="favorite_videos" Type="Self.favorite_videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="videos">
+              <PropertyRef Name="video_id" />
+            </Principal>
+            <Dependent Role="favorite_videos">
+              <PropertyRef Name="video_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="playlist" Type="Self.playlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_playlist">
+          <End Role="playlist" Type="Self.playlist" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="playlist">
+              <PropertyRef Name="playlist_id" />
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="playlist_id" />
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_videos">
+          <End Role="videos" Type="Self.videos" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="videos">
+              <PropertyRef Name="video_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="video_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_videos_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="videos" Type="Self.videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="videos">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NetflixModelStoreContainer">
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="favorite_videos" EntityType="Self.favorite_videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="playlist" EntityType="Self.playlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="playlist_video" EntityType="Self.playlist_video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="videos" EntityType="Self.videos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_favorite_videos_users" Association="Self.FK_favorite_videos_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="favorite_videos" EntitySet="favorite_videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_favorite_videos_videos" Association="Self.FK_favorite_videos_videos">
+            <End Role="videos" EntitySet="videos" />
+            <End Role="favorite_videos" EntitySet="favorite_videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_users" Association="Self.FK_payments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_users" Association="Self.FK_playlist_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="playlist" EntitySet="playlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_playlist" Association="Self.FK_playlist_video_playlist">
+            <End Role="playlist" EntitySet="playlist" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_users" Association="Self.FK_playlist_video_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_videos" Association="Self.FK_playlist_video_videos">
+            <End Role="videos" EntitySet="videos" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_videos_categories" Association="Self.FK_videos_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="videos" EntitySet="videos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NetflixModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="videos" Relationship="Self.FK_videos_categories" FromRole="categories" ToRole="videos" />
+        </EntityType>
+        <EntityType Name="favorite_videos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="video_id" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="Self.FK_favorite_videos_users" FromRole="favorite_videos" ToRole="users" />
+          <NavigationProperty Name="video" Relationship="Self.FK_favorite_videos_videos" FromRole="favorite_videos" ToRole="videos" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="purchase_date" Type="DateTime" Precision="3" />
+          <Property Name="expiration_date" Type="DateTime" Precision="3" />
+          <Property Name="account_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="Self.FK_payments_users" FromRole="payments" ToRole="users" />
+        </EntityType>
+        <EntityType Name="playlist">
+          <Key>
+            <PropertyRef Name="playlist_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="playlist_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="playlist_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_playlist_users" FromRole="playlist" ToRole="users" />
+          <NavigationProperty Name="playlist_video" Relationship="Self.FK_playlist_video_playlist" FromRole="playlist" ToRole="playlist_video" />
+        </EntityType>
+        <EntityType Name="playlist_video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="playlist_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="video_id" Type="Int32" />
+          <NavigationProperty Name="playlist" Relationship="Self.FK_playlist_video_playlist" FromRole="playlist_video" ToRole="playlist" />
+          <NavigationProperty Name="user" Relationship="Self.FK_playlist_video_users" FromRole="playlist_video" ToRole="users" />
+          <NavigationProperty Name="video" Relationship="Self.FK_playlist_video_videos" FromRole="playlist_video" ToRole="videos" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="account_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="account_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="payment_gmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="favorite_videos" Relationship="Self.FK_favorite_videos_users" FromRole="users" ToRole="favorite_videos" />
+          <NavigationProperty Name="payments" Relationship="Self.FK_payments_users" FromRole="users" ToRole="payments" />
+          <NavigationProperty Name="playlists" Relationship="Self.FK_playlist_users" FromRole="users" ToRole="playlist" />
+          <NavigationProperty Name="playlist_video" Relationship="Self.FK_playlist_video_users" FromRole="users" ToRole="playlist_video" />
+        </EntityType>
+        <EntityType Name="video">
+          <Key>
+            <PropertyRef Name="video_id" />
+          </Key>
+          <Property Name="video_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="video_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="video_time" Type="Int32" />
+          <Property Name="video_rel_country" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="release_date" Type="DateTime" Precision="0" />
+          <Property Name="director" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="writers" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="stars" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rating" Type="Double" />
+          <NavigationProperty Name="category" Relationship="Self.FK_videos_categories" FromRole="videos" ToRole="categories" />
+          <NavigationProperty Name="favorite_videos" Relationship="Self.FK_favorite_videos_videos" FromRole="videos" ToRole="favorite_videos" />
+          <NavigationProperty Name="playlist_video" Relationship="Self.FK_playlist_video_videos" FromRole="videos" ToRole="playlist_video" />
+        </EntityType>
+        <Association Name="FK_videos_categories">
+          <End Role="categories" Type="Self.category" Multiplicity="0..1" />
+          <End Role="videos" Type="Self.video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="videos">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favorite_videos_users">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="favorite_videos" Type="Self.favorite_videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="favorite_videos">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favorite_videos_videos">
+          <End Role="videos" Type="Self.video" Multiplicity="0..1" />
+          <End Role="favorite_videos" Type="Self.favorite_videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="videos">
+              <PropertyRef Name="video_id" />
+            </Principal>
+            <Dependent Role="favorite_videos">
+              <PropertyRef Name="video_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_users">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_users">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="playlist" Type="Self.playlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_playlist">
+          <End Role="playlist" Type="Self.playlist" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="playlist">
+              <PropertyRef Name="playlist_id" />
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="playlist_id" />
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_users">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_playlist_video_videos">
+          <End Role="videos" Type="Self.video" Multiplicity="0..1" />
+          <End Role="playlist_video" Type="Self.playlist_video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="videos">
+              <PropertyRef Name="video_id" />
+            </Principal>
+            <Dependent Role="playlist_video">
+              <PropertyRef Name="video_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NetflixEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="favorite_videos" EntityType="Self.favorite_videos" />
+          <EntitySet Name="payments" EntityType="Self.payment" />
+          <EntitySet Name="playlists" EntityType="Self.playlist" />
+          <EntitySet Name="playlist_video" EntityType="Self.playlist_video" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="videos" EntityType="Self.video" />
+          <AssociationSet Name="FK_videos_categories" Association="Self.FK_videos_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="videos" EntitySet="videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_favorite_videos_users" Association="Self.FK_favorite_videos_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="favorite_videos" EntitySet="favorite_videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_favorite_videos_videos" Association="Self.FK_favorite_videos_videos">
+            <End Role="videos" EntitySet="videos" />
+            <End Role="favorite_videos" EntitySet="favorite_videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_users" Association="Self.FK_payments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_users" Association="Self.FK_playlist_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="playlist" EntitySet="playlists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_playlist" Association="Self.FK_playlist_video_playlist">
+            <End Role="playlist" EntitySet="playlists" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_users" Association="Self.FK_playlist_video_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_playlist_video_videos" Association="Self.FK_playlist_video_videos">
+            <End Role="videos" EntitySet="videos" />
+            <End Role="playlist_video" EntitySet="playlist_video" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NetflixModelStoreContainer" CdmEntityContainer="NetflixEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="NetflixModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favorite_videos">
+            <EntityTypeMapping TypeName="NetflixModel.favorite_videos">
+              <MappingFragment StoreEntitySet="favorite_videos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="video_id" ColumnName="video_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="NetflixModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+                <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playlists">
+            <EntityTypeMapping TypeName="NetflixModel.playlist">
+              <MappingFragment StoreEntitySet="playlist">
+                <ScalarProperty Name="playlist_id" ColumnName="playlist_id" />
+                <ScalarProperty Name="playlist_name" ColumnName="playlist_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playlist_video">
+            <EntityTypeMapping TypeName="NetflixModel.playlist_video">
+              <MappingFragment StoreEntitySet="playlist_video">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="playlist_id" ColumnName="playlist_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="video_id" ColumnName="video_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NetflixModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="NetflixModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="payment_gmail" ColumnName="payment_gmail" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="videos">
+            <EntityTypeMapping TypeName="NetflixModel.video">
+              <MappingFragment StoreEntitySet="videos">
+                <ScalarProperty Name="video_id" ColumnName="video_id" />
+                <ScalarProperty Name="video_name" ColumnName="video_name" />
+                <ScalarProperty Name="video_time" ColumnName="video_time" />
+                <ScalarProperty Name="video_rel_country" ColumnName="video_rel_country" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="writers" ColumnName="writers" />
+                <ScalarProperty Name="stars" ColumnName="stars" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
