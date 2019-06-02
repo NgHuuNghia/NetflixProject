@@ -7,23 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Netflix
+namespace Netflix.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class category
+    public partial class playlist
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public category()
+        public playlist()
         {
-            this.videos = new HashSet<video>();
+            this.playlist_video = new HashSet<playlist_video>();
         }
     
-        public int category_id { get; set; }
-        public string category_name { get; set; }
+        public int playlist_id { get; set; }
+        public string playlist_name { get; set; }
+        public int user_id { get; set; }
     
+        public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<video> videos { get; set; }
+        public virtual ICollection<playlist_video> playlist_video { get; set; }
     }
 }

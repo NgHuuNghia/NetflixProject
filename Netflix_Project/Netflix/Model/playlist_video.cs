@@ -7,19 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Netflix
+namespace Netflix.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class payment
+    public partial class playlist_video
     {
         public int id { get; set; }
+        public Nullable<int> playlist_id { get; set; }
         public Nullable<int> user_id { get; set; }
-        public Nullable<System.DateTime> purchase_date { get; set; }
-        public Nullable<System.DateTime> expiration_date { get; set; }
-        public string account_type { get; set; }
+        public Nullable<int> video_id { get; set; }
     
+        public virtual playlist playlist { get; set; }
         public virtual user user { get; set; }
+        public virtual video video { get; set; }
     }
 }

@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Netflix
+namespace Netflix.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class favorite_videos
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public Nullable<int> video_id { get; set; }
+    
+        public virtual user user { get; set; }
+        public virtual video video { get; set; }
     }
 }

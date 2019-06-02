@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Netflix
+namespace Netflix.Model
 {
     using System;
     using System.Data.Entity;

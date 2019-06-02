@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'G:\Semester 6\Lap Trinh Ung Dung Quan Li 2\DoAn\NetflixProject\Netflix_Project\Netflix\NetflixModel.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\Semester 6\Lap Trinh Ung Dung Quan Li 2\DoAn\NetflixProject\Netflix_Project\Netflix\Model\NetflixModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -73,43 +73,43 @@
     <Compile Include="AdminMainWindow.xaml.cs">
       <DependentUpon>AdminMainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="category.cs">
+    <Compile Include="Model\category.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="favorite_videos.cs">
+    <Compile Include="Model\favorite_videos.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NetflixModel.Context.cs">
+    <Compile Include="Model\NetflixModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NetflixModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="NetflixModel.cs">
+    <Compile Include="Model\NetflixModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NetflixModel.Designer.cs">
+    <Compile Include="Model\NetflixModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NetflixModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="payment.cs">
+    <Compile Include="Model\payment.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="playlist.cs">
+    <Compile Include="Model\playlist.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="playlist_video.cs">
+    <Compile Include="Model\playlist_video.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="user.cs">
+    <Compile Include="Model\user.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="video.cs">
+    <Compile Include="Model\video.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -153,11 +153,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="NetflixModel.edmx">
+    <EntityDeploy Include="Model\NetflixModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NetflixModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="NetflixModel.edmx.diagram">
+    <None Include="Model\NetflixModel.edmx.diagram">
       <DependentUpon>NetflixModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config">
@@ -174,19 +174,17 @@
   <ItemGroup>
     <Resource Include="Assets\images\Netflix-Logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NetflixModel.Context.tt">
+    <Content Include="Model\NetflixModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NetflixModel.edmx</DependentUpon>
       <LastGenOutput>NetflixModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="NetflixModel.tt">
+    <Content Include="Model\NetflixModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NetflixModel.edmx</DependentUpon>
       <LastGenOutput>NetflixModel.cs</LastGenOutput>
