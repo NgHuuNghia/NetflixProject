@@ -123,6 +123,7 @@
     <Compile Include="Model\video.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="AdminMainWindow.xaml">

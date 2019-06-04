@@ -53,7 +53,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <Grid x:Name="GridBackground" Background="#55313131" Opacity="0"/>
         <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
             <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131"/>
         </Button>
