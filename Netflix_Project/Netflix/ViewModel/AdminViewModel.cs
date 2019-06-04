@@ -10,27 +10,53 @@ namespace Netflix.ViewModel
 {
     public class AdminViewModel : BaseViewModel
     {
-        private ObservableCollection<Account> _AccountList;
-        public ObservableCollection<Account> AccountList { get => _AccountList; set { _AccountList = value; OnPropertyChanged(); } }
+        private ObservableCollection<user> _UserList;
+        public ObservableCollection<user> UserList { get => _UserList; set { _UserList = value; OnPropertyChanged(); } }
+
+        private user _SelectedItem;
+        public user SelectedItem {
+            get => _SelectedItem;
+            set {
+                    _SelectedItem = value;
+                    OnPropertyChanged();
+                    if (SelectedItem != null)
+                    {
+                        UserID = SelectedItem.user_id;
+                        Name = SelectedItem.name;
+                        Birthday = SelectedItem.birthday;
+                        Account = SelectedItem.account_id;
+                        Password = SelectedItem.password;
+                        Type = SelectedItem.account_type;
+                        Gmail = SelectedItem.payment_gmail;
+
+                    }
+                }
+        }
+
+        private int _UserID;
+        public int UserID { get => _UserID; set { _UserID = value; OnPropertyChanged(); } }
+
+        private string _Name;
+        public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
+
+        private DateTime _Birthday;
+        public DateTime Birthday { get => _Birthday; set { _Birthday = value; OnPropertyChanged(); } }
+
+        private string _Account;
+        public string Account { get => _Account; set { _Account = value; OnPropertyChanged(); } }
+
+        private string _Password;
+        public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
+
+        private string _Type;
+        public string Type { get => _Type; set { _Type = value; OnPropertyChanged(); } }
+
+        private string _Gmail;
+        public string Gmail { get => _Gmail; set { _Gmail = value; OnPropertyChanged(); } }
 
         public AdminViewModel()
         {
-            loadDSTK();
-        }
-        void loadDSTK()
-        {
-            AccountList = new ObservableCollection<Account>();
-
-            var userList = DataProvider.Ins.DB.users;
-            foreach (var item in userList)
-            {
-                //var birthdayFormat = DateTime.Now;
-                //item.birthday = birthdayFormat;
-                Account account = new Account();
-                account.user = item;
-                AccountList.Add(account);
-            }
-
+            UserList = new ObservableCollection<user>(DataProvider.Ins.DB.users);
         }
 
     }
