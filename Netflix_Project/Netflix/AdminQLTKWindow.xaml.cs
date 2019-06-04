@@ -15,26 +15,18 @@ using System.Windows.Shapes;
 namespace Netflix
 {
     /// <summary>
-    /// Interaction logic for AdminMainWindow.xaml
+    /// Interaction logic for AdminQLTKWindow.xaml
     /// </summary>
-    public partial class AdminMainWindow : Window
+    public partial class AdminQLTKWindow : Window
     {
-        public AdminMainWindow()
+        public AdminQLTKWindow()
         {
             InitializeComponent();
         }
-
         private void BtnExit_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void BtnQLTK_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Visibility = Visibility.Collapsed;    
-            AdminQLTKWindow adminQLTKWindow = new AdminQLTKWindow();
-            adminQLTKWindow.ShowDialog();
-            this.Visibility = Visibility.Visible;
-        }
     }
 }
