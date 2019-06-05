@@ -94,7 +94,9 @@ namespace Netflix.ViewModel
         
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         
+
 
         public AdminViewModel()
         {
@@ -132,12 +134,12 @@ namespace Netflix.ViewModel
                 {
                     return false;
                 }
-                ////check tồn tại hay chưa
-                //var user = DataProvider.Ins.DB.users.Where(x => x.account_id == Account);
-                //if (user == null || user.Count() != 0)
-                //{
-                //    return false;
-                //}
+                // check tồn tại hay chưa
+                var user = DataProvider.Ins.DB.users.Where(x => x.user_id == UserID);
+                if (user == null || user.Count() == 0)
+                {
+                    return false;
+                }
                 //nhấn được
                 return true;
             }, (p) =>
@@ -174,9 +176,30 @@ namespace Netflix.ViewModel
 
                 //private System.DateTime _birthday;
                 //public System.DateTime birthday { get => _birthday; set { _birthday = value; OnPropertyChanged(); } }
+            });
 
+            DeleteCommand = new RelayCommand<user>((p) =>
+            {
+                //check tồn tại hay chưa
+                var user = DataProvider.Ins.DB.users.Where(x => x.user_id == UserID);
+                if (user == null || user.Count() == 0)
+                {
+                    return false;
+                }
+                //nhấn được
+                return true;
+            }, (p) =>
+            {
+                var user = DataProvider.Ins.DB.users.Where(x => x.user_id == UserID).SingleOrDefault();
+                DataProvider.Ins.DB.users.Remove(user);
+                DataProvider.Ins.DB.SaveChanges();
+
+                //load lai data
+                UserList.Remove(user);
 
             });
+
+
         }
 
     }
