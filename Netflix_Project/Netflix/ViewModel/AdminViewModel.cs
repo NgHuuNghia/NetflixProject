@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Netflix.ViewModel
 {
@@ -91,10 +92,91 @@ namespace Netflix.ViewModel
             }
         }
         
+        public ICommand AddCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+        
 
         public AdminViewModel()
         {
             UserList = new ObservableCollection<user>(DataProvider.Ins.DB.users);
+
+            AddCommand = new RelayCommand<user>((p) => 
+            {
+                // điều kiện add được
+                if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Type) || string.IsNullOrEmpty(Gmail))
+                {
+                    return false;
+                }
+                //check tồn tại hay chưa
+                var user = DataProvider.Ins.DB.users.Where(x => x.account_id == Account);
+                if(user == null || user.Count() != 0)
+                {
+                    return false;
+                }
+                //nhấn được
+                return true;
+            }, (p) => 
+            {
+                var user =  new user() { name = Name, birthday = Birthday, account_id = Account,password = Password, account_type = Type, payment_gmail = Gmail };
+                DataProvider.Ins.DB.users.Add(user);
+                DataProvider.Ins.DB.SaveChanges();
+
+                //load data
+                UserList.Add(user);
+            });
+
+            EditCommand = new RelayCommand<user>((p) =>
+            {
+                // điều kiện edit được
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Type) || string.IsNullOrEmpty(Gmail))
+                {
+                    return false;
+                }
+                ////check tồn tại hay chưa
+                //var user = DataProvider.Ins.DB.users.Where(x => x.account_id == Account);
+                //if (user == null || user.Count() != 0)
+                //{
+                //    return false;
+                //}
+                //nhấn được
+                return true;
+            }, (p) =>
+            {
+                var user = DataProvider.Ins.DB.users.Where(x => x.user_id == UserID).SingleOrDefault();
+
+                user.name = Name;
+                user.birthday = Birthday;
+                user.account_id = Account;
+                user.password = Password;
+                user.account_type = Type;
+                user.payment_gmail = Gmail;
+
+                DataProvider.Ins.DB.SaveChanges();
+
+                ///load data sửa trong user model khi tạo entity mới thì copy dán vô lại user.cs (https://www.youtube.com/watch?v=IaLDvfhoVWc&list=PL33lvabfss1zfGxCcTIYr5IjsyweWWtAO&index=14)
+
+                //public int user_id { get; set; }
+
+                //private string _name;
+                //public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
+
+                //private string _account_id;
+                //public string account_id { get => _account_id; set { _account_id = value; OnPropertyChanged(); } }
+
+                //private string _password;
+                //public string password { get => _password; set { _password = value; OnPropertyChanged(); } }
+
+                //private string _account_type;
+                //public string account_type { get => _account_type; set { _account_type = value; OnPropertyChanged(); } }
+
+                //private string _payment_gmail;
+                //public string payment_gmail { get => _payment_gmail; set { _payment_gmail = value; OnPropertyChanged(); } }
+
+                //private System.DateTime _birthday;
+                //public System.DateTime birthday { get => _birthday; set { _birthday = value; OnPropertyChanged(); } }
+
+
+            });
         }
 
     }

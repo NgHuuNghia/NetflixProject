@@ -9,10 +9,11 @@
 
 namespace Netflix.Model
 {
+    using Netflix.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class user : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
@@ -24,12 +25,24 @@ namespace Netflix.Model
         }
     
         public int user_id { get; set; }
-        public string name { get; set; }
-        public string account_id { get; set; }
-        public string password { get; set; }
-        public string account_type { get; set; }
-        public string payment_gmail { get; set; }
-        public System.DateTime birthday { get; set; }
+
+        private string _name;
+        public string name { get => _name; set { _name = value;OnPropertyChanged(); } }
+
+        private string _account_id;
+        public string account_id { get => _account_id; set { _account_id = value; OnPropertyChanged(); } }
+
+        private string _password;
+        public string password { get => _password; set { _password = value; OnPropertyChanged(); } }
+
+        private string _account_type;
+        public string account_type { get => _account_type; set { _account_type = value; OnPropertyChanged(); } }
+
+        private string _payment_gmail;
+        public string payment_gmail { get => _payment_gmail; set { _payment_gmail = value; OnPropertyChanged(); } }
+
+        private System.DateTime _birthday;
+        public System.DateTime birthday { get => _birthday; set { _birthday = value; OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<favorite_videos> favorite_videos { get; set; }

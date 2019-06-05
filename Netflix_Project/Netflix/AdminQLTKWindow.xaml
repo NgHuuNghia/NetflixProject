@@ -49,19 +49,23 @@
     <Grid>
         <Grid x:Name="GridBackground" Background="#55313131" Opacity="0"></Grid>
         <Grid x:Name="MainViewQLTK">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="535*"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid >
+            <Grid Grid.ColumnSpan="2" >
                 <Label FontSize="20" FontWeight="Black" Content="DANH SÁCH TÀI KHOẢN" Margin="440 10 0 0"></Label>
                 <WrapPanel>
-                    <Label Width="100" Margin="20 65 0 0" Content="Sắp xếp: "></Label>
+                    <Label Width="100" Margin="20 65 0 0" Content="Sắp xếp theo: "></Label>
                     <ComboBox  x:Name="cbbSortUser" SelectedItem="{Binding SelectedTypeSort,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding ListSort}" Width="100" Margin="0 60 0 0">
                     </ComboBox>
                 </WrapPanel>
 
             </Grid>
-            <Grid Height="220" Margin="0 -100 0 0">
+            <Grid Height="220" Margin="0,126,0,225" Grid.ColumnSpan="2">
                 <materialDesign:Card>
-                    
+
                 </materialDesign:Card>
                 <ListView x:Name="ListUser" ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedItem,Mode=OneWayToSource}"  >
                     <ListView.View>
@@ -78,7 +82,7 @@
                 </ListView>
             </Grid>
 
-            <Grid Margin="200 350 0 0">
+            <Grid Margin="196,350,0,0" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="255*"/>
@@ -103,22 +107,23 @@
                 <TextBox IsEnabled="False"  Width="200" Grid.Column="1" Grid.Row="0" Name="txtUserID" Text="{Binding UserID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="1" Grid.Row="1" Name="txtName" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <DatePicker DisplayDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="1" Grid.Row="2" Name="datePickerBirthday"  SelectedDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox IsEnabled="False"  Width="200" Grid.Column="1" Grid.Row="3" Name="txtAccount" Text="{Binding Account,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtAccount" Text="{Binding Account,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="0" Name="txtPassword" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="1" Name="txtAccountType" Text="{Binding Type,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtGmail" Text="{Binding Gmail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
             </Grid>
-            <WrapPanel Margin="350 500 0 0">
+            <WrapPanel Margin="346,500,0,0" Grid.Column="1">
                 <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
-                <Button Command="{Binding AddCommand}" Content="Xoá" Margin="5" Width="100"></Button>
-                <Button Command="{Binding AddCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                <Button Command="{Binding DeleteCommand}" Content="Xoá" Margin="5" Width="100"></Button>
+               
             </WrapPanel>
         </Grid>
-        
+
         <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
             <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131"/>
         </Button>
-        
+
         <Grid x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -173,7 +178,7 @@
             <Button x:Name="ButtonClose" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
                 <materialDesign:PackIcon  Kind="ArrowLeft"/>
             </Button>
-        
+
         </Grid>
     </Grid>
 </Window>
