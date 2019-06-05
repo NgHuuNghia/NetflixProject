@@ -82,6 +82,9 @@
     <Compile Include="AdminQLTKWindow.xaml.cs">
       <DependentUpon>AdminQLTKWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminVideoWindow.xaml.cs">
+      <DependentUpon>AdminVideoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\category.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
@@ -123,6 +126,7 @@
     <Compile Include="Model\video.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AdminVideoViewModel.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -131,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminQLTKWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminVideoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

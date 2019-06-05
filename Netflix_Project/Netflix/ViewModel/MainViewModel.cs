@@ -31,10 +31,10 @@ namespace Netflix.ViewModel
                 //mainWindow.ShowDialog();
 
                 //load adminQTLKWindown
-              
-                AdminQLTKWindow adminQLTKWindow = new AdminQLTKWindow();
-                adminQLTKWindow.ShowDialog();
-                
+
+                AdminVideoWindow adminVideoWindow = new AdminVideoWindow();
+                adminVideoWindow.ShowDialog();
+
 
             }
               );

@@ -4,4 +4,5 @@
                     xmlns:local="clr-namespace:Netflix.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:AdminViewModel x:Key="AdminAccountVM"></viewmodel:AdminViewModel>
+    <viewmodel:AdminVideoViewModel x:Key="AdminVideoVM"></viewmodel:AdminVideoViewModel>
 </ResourceDictionary>

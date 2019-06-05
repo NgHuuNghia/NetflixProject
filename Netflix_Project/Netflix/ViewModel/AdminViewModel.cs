@@ -105,7 +105,7 @@ namespace Netflix.ViewModel
             AddCommand = new RelayCommand<user>((p) => 
             {
                 // điều kiện add được
-                if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Type) || string.IsNullOrEmpty(Gmail))
+                if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || Type != "basic" && Type != "premium" || string.IsNullOrEmpty(Gmail))
                 {
                     return false;
                 }
@@ -130,7 +130,7 @@ namespace Netflix.ViewModel
             EditCommand = new RelayCommand<user>((p) =>
             {
                 // điều kiện edit được
-                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Type) || string.IsNullOrEmpty(Gmail))
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || Type != "basic" && Type != "premium" || string.IsNullOrEmpty(Gmail))
                 {
                     return false;
                 }
