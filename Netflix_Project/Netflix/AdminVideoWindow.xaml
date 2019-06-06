@@ -111,15 +111,15 @@
                 <TextBlock Grid.Column="4" Grid.Row="0" Text="Diễn viên:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
                 <TextBlock Grid.Column="4" Grid.Row="1" Text="Điểm đánh giá:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
                 <TextBox IsEnabled="False"  Width="200" Grid.Column="1" Grid.Row="0" Name="txtVideoID" Text="{Binding VideoID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="1" Grid.Row="1" Name="txtVideoName" Text="{Binding VideoName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="1" Grid.Row="2" Name="txtTime" Text="{Binding VideoTime,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtCountry" Text="{Binding RelCountry,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox  Grid.Column="1" Grid.Row="1" Name="txtVideoName" Text="{Binding VideoName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox  Grid.Column="1" Grid.Row="2" Name="txtTime" Text="{Binding VideoTime,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox  Grid.Column="1" Grid.Row="3" Name="txtCountry" Text="{Binding RelCountry,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <ComboBox Width="150" Grid.Column="3" Grid.Row="0" Name="cbbType" DisplayMemberPath="category_name" ItemsSource="{Binding Category}" SelectedItem="{Binding SelectedCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="8,2,74,3"/>
                 <DatePicker DisplayDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="3" Grid.Row="1" Name="txtRelDate"  SelectedDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtDirector" Text="{Binding Director,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="3" Name="txtWriter" Text="{Binding Writer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="5" Grid.Row="0" Name="txtStar" Text="{Binding Stars,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="5" Grid.Row="1" Name="txtRating" Text="{Binding Rating,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox  Grid.Column="3" Grid.Row="2" Name="txtDirector" Text="{Binding Director,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Grid.Column="3" Grid.Row="3" Name="txtWriter" Text="{Binding Writer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Grid.Column="5" Grid.Row="0" Name="txtStar" Text="{Binding Stars,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox  Grid.Column="5" Grid.Row="1" Name="txtRating" Text="{Binding Rating,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
             </Grid>
             <WrapPanel Margin="346,500,0,0" Grid.Column="1">
                 <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
