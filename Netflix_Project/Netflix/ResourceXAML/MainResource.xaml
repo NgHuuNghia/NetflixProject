@@ -5,4 +5,5 @@
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:AdminQLTKViewModel x:Key="AdminAccountVM"></viewmodel:AdminQLTKViewModel>
     <viewmodel:AdminVideoViewModel x:Key="AdminVideoVM"></viewmodel:AdminVideoViewModel>
+    <viewmodel:AdminChartViewModel x:Key="AdminChartVM"></viewmodel:AdminChartViewModel>
 </ResourceDictionary>

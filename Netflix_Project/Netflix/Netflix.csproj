@@ -76,6 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminChartWindow.xaml.cs">
+      <DependentUpon>AdminChartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminMainWindow.xaml.cs">
       <DependentUpon>AdminMainWindow.xaml</DependentUpon>
     </Compile>
@@ -126,10 +129,15 @@
     <Compile Include="Model\video.cs">
       <DependentUpon>NetflixModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AdminChartViewModel.cs" />
     <Compile Include="ViewModel\AdminVideoViewModel.cs" />
     <Compile Include="ViewModel\AdminQLTKViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="AdminChartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

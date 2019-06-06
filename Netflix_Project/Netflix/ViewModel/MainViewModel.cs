@@ -32,8 +32,8 @@ namespace Netflix.ViewModel
 
                 //load adminQTLKWindown
 
-                AdminVideoWindow adminVideoWindow = new AdminVideoWindow();
-                adminVideoWindow.ShowDialog();
+                AdminChartWindow adminChartWindow = new AdminChartWindow();
+                adminChartWindow.ShowDialog();
 
 
             }
