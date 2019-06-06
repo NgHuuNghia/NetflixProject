@@ -14,6 +14,9 @@ namespace Netflix.ViewModel
         private ObservableCollection<user> _UserList;
         public ObservableCollection<user> UserList { get => _UserList; set { _UserList = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<string> _ListTypeAccount = new ObservableCollection<string>() { "basic","premium" };
+        public ObservableCollection<string> ListTypeAccount { get => _ListTypeAccount; set { _ListTypeAccount = value; OnPropertyChanged(); } }
+
         private user _SelectedItem;
         public user SelectedItem {
             get => _SelectedItem;
@@ -29,8 +32,19 @@ namespace Netflix.ViewModel
                     Password = SelectedItem.password;
                     Type = SelectedItem.account_type;
                     Gmail = SelectedItem.payment_gmail;
-
+                    SelectedType = SelectedItem.account_type;
                 }
+            }
+        }
+
+        private string _SelectedType;
+        public string SelectedType
+        {
+            get => _SelectedType;
+            set
+            {
+                _SelectedType = value;
+                OnPropertyChanged();
             }
         }
 
@@ -105,7 +119,7 @@ namespace Netflix.ViewModel
             AddCommand = new RelayCommand<user>((p) => 
             {
                 // điều kiện add được
-                if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || Type != "basic" && Type != "premium" || string.IsNullOrEmpty(Gmail))
+                if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Gmail))
                 {
                     return false;
                 }
@@ -119,7 +133,7 @@ namespace Netflix.ViewModel
                 return true;
             }, (p) => 
             {
-                var user =  new user() { name = Name, birthday = Birthday, account_id = Account,password = Password, account_type = Type, payment_gmail = Gmail };
+                var user =  new user() { name = Name, birthday = Birthday, account_id = Account,password = Password, account_type = SelectedType, payment_gmail = Gmail };
                 DataProvider.Ins.DB.users.Add(user);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -130,7 +144,7 @@ namespace Netflix.ViewModel
             EditCommand = new RelayCommand<user>((p) =>
             {
                 // điều kiện edit được
-                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || Type != "basic" && Type != "premium" || string.IsNullOrEmpty(Gmail))
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Gmail))
                 {
                     return false;
                 }
@@ -150,7 +164,7 @@ namespace Netflix.ViewModel
                 user.birthday = Birthday;
                 user.account_id = Account;
                 user.password = Password;
-                user.account_type = Type;
+                user.account_type = SelectedType;
                 user.payment_gmail = Gmail;
 
                 DataProvider.Ins.DB.SaveChanges();

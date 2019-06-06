@@ -11,11 +11,15 @@ namespace Netflix.ViewModel
 {
     public class AdminVideoViewModel : BaseViewModel
     {
+        private ObservableCollection<category> _Category;
+        public ObservableCollection<category> Category { get => _Category; set { _Category = value; OnPropertyChanged(); } }
+
         private ObservableCollection<string> _ListSort = new ObservableCollection<string>() { "VideoID", "Tên video", "Thời gian", "Quốc gia", "Thể loại", "Ngày ra mắt", "Giám đốc sản xuất", "Biên kịch", "Diễn viên","Điểm đánh giá" };
         public ObservableCollection<string> ListSort { get => _ListSort; set { _ListSort = value; OnPropertyChanged(); } }
 
         private ObservableCollection<video> _VideoList;
         public ObservableCollection<video> VideoList { get => _VideoList; set { _VideoList = value; OnPropertyChanged(); } }
+
 
         private string _SelectedTypeSort;
         public string SelectedTypeSort
@@ -83,21 +87,27 @@ namespace Netflix.ViewModel
                     VideoName = SelectedItem.video_name;
                     VideoTime = (int)SelectedItem.video_time;
                     RelCountry = SelectedItem.video_rel_country;
-                    VideoType = SelectedItem.category.category_name;
-                    VideoTypeCatID = SelectedItem.category.category_id;
+                    //VideoType = SelectedItem.category.category_name;
                     RelDate = (DateTime)SelectedItem.release_date;
                     Director = SelectedItem.director;
                     Writer = SelectedItem.writers;
                     Stars = SelectedItem.stars;
                     Rating = (double)SelectedItem.rating;
-
+                    SelectedCategory = SelectedItem.category;
                 }
             }
         }
 
-        private int _VideoTypeCatID;
-        public int VideoTypeCatID { get => _VideoTypeCatID; set { _VideoTypeCatID = value; OnPropertyChanged(); } }
-
+        private category _SelectedCategory;
+        public category SelectedCategory
+        {
+            get => _SelectedCategory;
+            set
+            {
+                _SelectedCategory = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _VideoID;
         public int VideoID { get => _VideoID; set { _VideoID = value; OnPropertyChanged(); } }
@@ -111,8 +121,8 @@ namespace Netflix.ViewModel
         private string _RelCountry;
         public string RelCountry { get => _RelCountry; set { _RelCountry = value; OnPropertyChanged(); } }
 
-        private string _VideoType;
-        public string VideoType { get => _VideoType; set { _VideoType = value; OnPropertyChanged(); } }
+        //private string _VideoType;
+        //public string VideoType { get => _VideoType; set { _VideoType = value; OnPropertyChanged(); } }
 
         private DateTime _RelDate;
         public DateTime RelDate { get => _RelDate; set { _RelDate = value; OnPropertyChanged(); } }
@@ -129,6 +139,8 @@ namespace Netflix.ViewModel
         private double _Rating;
         public double Rating { get => _Rating; set { _Rating = value; OnPropertyChanged(); } }
 
+        
+
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -136,10 +148,11 @@ namespace Netflix.ViewModel
         public AdminVideoViewModel()
         {
             VideoList = new ObservableCollection<video>(DataProvider.Ins.DB.videos);
+            Category = new ObservableCollection<category>(DataProvider.Ins.DB.categories);
             AddCommand = new RelayCommand<video>((p) =>
             {
                 // điều kiện add được
-                if (string.IsNullOrEmpty(VideoName) || string.IsNullOrEmpty(VideoTime.ToString()) || string.IsNullOrEmpty(RelCountry) || string.IsNullOrEmpty(VideoType) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Writer) || string.IsNullOrEmpty(Stars) || string.IsNullOrEmpty(Rating.ToString()))
+                if (string.IsNullOrEmpty(VideoName) || string.IsNullOrEmpty(VideoTime.ToString()) || string.IsNullOrEmpty(RelCountry) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Writer) || string.IsNullOrEmpty(Stars) || string.IsNullOrEmpty(Rating.ToString()))
                 {
                     return false;
                 }
@@ -147,13 +160,7 @@ namespace Netflix.ViewModel
                 {
                     return false;
                 }
-                
-                //check tồn tại loại phim hay ko
-                var category = DataProvider.Ins.DB.categories.Where(x => x.category_name == VideoType);
-                if (category == null || category.Count() == 0)
-                {
-                    return false;
-                }
+               
 
                 if (Rating < 0 || Rating > 10)
                 {
@@ -169,7 +176,8 @@ namespace Netflix.ViewModel
                 return true;
             }, (p) =>
             {
-                var video = new video() { video_name = VideoName, video_time = VideoTime, video_rel_country = RelCountry, category_id = VideoTypeCatID, release_date = RelDate,director = Director,writers = Writer, stars = Stars, rating = Rating  };
+                var category = DataProvider.Ins.DB.categories.Where(x => x.category_name == SelectedCategory.category_name).SingleOrDefault();
+                var video = new video() { video_name = VideoName, video_time = VideoTime, video_rel_country = RelCountry, category_id = category.category_id, release_date = RelDate,director = Director,writers = Writer, stars = Stars, rating = Rating  };
                 DataProvider.Ins.DB.videos.Add(video);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -180,17 +188,11 @@ namespace Netflix.ViewModel
             EditCommand = new RelayCommand<video>((p) =>
             {
                 // điều kiện add được
-                if (string.IsNullOrEmpty(VideoName) || string.IsNullOrEmpty(VideoTime.ToString()) || string.IsNullOrEmpty(RelCountry) || string.IsNullOrEmpty(VideoType) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Writer) || string.IsNullOrEmpty(Stars) || string.IsNullOrEmpty(Rating.ToString()))
+                if (string.IsNullOrEmpty(VideoName) || string.IsNullOrEmpty(VideoTime.ToString()) || string.IsNullOrEmpty(RelCountry) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Writer) || string.IsNullOrEmpty(Stars) || string.IsNullOrEmpty(Rating.ToString()))
                 {
                     return false;
                 }
                 if (VideoTime.GetType() != typeof(int) || Rating.GetType() != typeof(double))
-                {
-                    return false;
-                }
-                
-                var category = DataProvider.Ins.DB.categories.Where(x => x.category_name == VideoType);
-                if (category == null || category.Count() == 0)
                 {
                     return false;
                 }
@@ -208,7 +210,7 @@ namespace Netflix.ViewModel
             }, (p) =>
             {
                 var video = DataProvider.Ins.DB.videos.Where(x => x.video_id == VideoID).SingleOrDefault();
-                var category = DataProvider.Ins.DB.categories.Where(x => x.category_name == VideoType).SingleOrDefault();
+                var category = DataProvider.Ins.DB.categories.Where(x => x.category_name == SelectedCategory.category_name).SingleOrDefault();
                 video.video_name = VideoName;
                 video.video_time = VideoTime;
                 video.video_rel_country = RelCountry;

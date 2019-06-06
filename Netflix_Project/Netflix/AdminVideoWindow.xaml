@@ -71,14 +71,14 @@
                         <GridView >
                             <GridViewColumn Width="100" Header="VideoID" DisplayMemberBinding="{Binding video_id}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Tên Video" DisplayMemberBinding="{Binding video_name}"></GridViewColumn>
-                            <GridViewColumn Width="100" Header="Thời gian" DisplayMemberBinding="{Binding video_time}"></GridViewColumn>
+                            <GridViewColumn Width="80" Header="Thời gian" DisplayMemberBinding="{Binding video_time}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Quốc gia" DisplayMemberBinding="{Binding video_rel_country}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Thể loại" DisplayMemberBinding="{Binding category.category_name}"></GridViewColumn>
                             <GridViewColumn Width="120" Header="Ngày ra mắt" DisplayMemberBinding="{Binding release_date,StringFormat=d,ConverterCulture=fr-FR}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Giám đốc" DisplayMemberBinding="{Binding director}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Biên kịch" DisplayMemberBinding="{Binding writers}"></GridViewColumn>
                             <GridViewColumn Width="100" Header="Diễn viên" DisplayMemberBinding="{Binding stars}"></GridViewColumn>
-                            <GridViewColumn Width="120" Header="Điểm đánh giá" DisplayMemberBinding="{Binding rating}"></GridViewColumn>
+                            <GridViewColumn Width="120" Header="Điểm đánh giá" DisplayMemberBinding="{Binding rating,StringFormat={}{0}/10}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -114,7 +114,7 @@
                 <TextBox Width="200" Grid.Column="1" Grid.Row="1" Name="txtVideoName" Text="{Binding VideoName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="1" Grid.Row="2" Name="txtTime" Text="{Binding VideoTime,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtCountry" Text="{Binding RelCountry,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="0" Name="txtType" Text="{Binding VideoType,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <ComboBox Width="150" Grid.Column="3" Grid.Row="0" Name="cbbType" DisplayMemberPath="category_name" ItemsSource="{Binding Category}" SelectedItem="{Binding SelectedCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="8,2,74,3"/>
                 <DatePicker DisplayDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="3" Grid.Row="1" Name="txtRelDate"  SelectedDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtDirector" Text="{Binding Director,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="3" Name="txtWriter" Text="{Binding Writer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>

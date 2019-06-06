@@ -109,8 +109,7 @@
                 <DatePicker DisplayDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="1" Grid.Row="2" Name="datePickerBirthday"  SelectedDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtAccount" Text="{Binding Account,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="0" Name="txtPassword" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="1" Name="txtAccountType" Text="{Binding Type,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <Label Width="200" Grid.Column="4" Grid.Row="1"  Content="(basic/premium)" VerticalAlignment="Center" Margin="-120,4,74,3"/>
+                <ComboBox Width="115" Grid.Column="3" Grid.Row="1" Name="cbbAccountType"  ItemsSource="{Binding ListTypeAccount}" SelectedItem="{Binding SelectedType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="8,1,74,3"/>
                 <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtGmail" Text="{Binding Gmail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
             </Grid>
             <WrapPanel Margin="346,500,0,0" Grid.Column="1">
