@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Netflix.ViewModel
 {
-    public class AdminViewModel : BaseViewModel
+    public class AdminQLTKViewModel : BaseViewModel
     {
         private ObservableCollection<user> _UserList;
         public ObservableCollection<user> UserList { get => _UserList; set { _UserList = value; OnPropertyChanged(); } }
@@ -98,7 +98,7 @@ namespace Netflix.ViewModel
         
 
 
-        public AdminViewModel()
+        public AdminQLTKViewModel()
         {
             UserList = new ObservableCollection<user>(DataProvider.Ins.DB.users);
 

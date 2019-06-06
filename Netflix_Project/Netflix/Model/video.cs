@@ -9,10 +9,11 @@
 
 namespace Netflix.Model
 {
+    using Netflix.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class video
+    public partial class video : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public video()
@@ -22,17 +23,39 @@ namespace Netflix.Model
         }
     
         public int video_id { get; set; }
-        public string video_name { get; set; }
-        public Nullable<int> video_time { get; set; }
-        public string video_rel_country { get; set; }
-        public Nullable<int> category_id { get; set; }
-        public Nullable<System.DateTime> release_date { get; set; }
-        public string director { get; set; }
-        public string writers { get; set; }
-        public string stars { get; set; }
-        public Nullable<double> rating { get; set; }
-    
-        public virtual category category { get; set; }
+
+        private string _video_name { get; set; }
+        public string video_name { get => _video_name; set { _video_name = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _video_time { get; set; }
+        public Nullable<int> video_time { get => _video_time; set { _video_time = value; OnPropertyChanged(); } }
+
+        private string _video_rel_country { get; set; }
+        public string video_rel_country { get => _video_rel_country; set { _video_rel_country = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _category_id { get; set; }
+        public Nullable<int> category_id { get => _category_id; set { _category_id = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _release_date { get; set; }
+        public Nullable<System.DateTime> release_date { get => _release_date; set { _release_date = value; OnPropertyChanged(); } }
+
+        private string _director { get; set; }
+        public string director { get => _director; set { _director = value; OnPropertyChanged(); } }
+
+        private string _writers { get; set; }
+        public string writers { get => _writers; set { _writers = value; OnPropertyChanged(); } }
+
+        private string _stars { get; set; }
+        public string stars { get => _stars; set { _stars = value; OnPropertyChanged(); } }
+
+        private Nullable<double> _rating { get; set; }
+        public Nullable<double> rating { get => _rating; set { _rating = value; OnPropertyChanged(); } }
+
+        public category _category;
+        public virtual category category { get => _category; set { _category = value; OnPropertyChanged(); } }
+
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<favorite_videos> favorite_videos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -62,31 +62,35 @@
                 </WrapPanel>
 
             </Grid>
-            <!--<Grid Height="220" Margin="0,126,0,225" Grid.ColumnSpan="2">
+            <Grid Height="220" Margin="0,126,0,225" Grid.ColumnSpan="2">
                 <materialDesign:Card>
 
                 </materialDesign:Card>
-                <ListView x:Name="ListUser" ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedItem,Mode=OneWayToSource}"  >
+                <ListView x:Name="ListVideo" ItemsSource="{Binding VideoList}" SelectedItem="{Binding SelectedItem,Mode=OneWayToSource}"  >
                     <ListView.View>
                         <GridView >
-                            <GridViewColumn Width="100" Header="UserId" DisplayMemberBinding="{Binding user_id}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Họ Tên" DisplayMemberBinding="{Binding name}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Ngày Sinh" DisplayMemberBinding="{Binding birthday,StringFormat=d,ConverterCulture=fr-FR}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Tài khoản" DisplayMemberBinding="{Binding account_id}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Mật khẩu" DisplayMemberBinding="{Binding password}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Loại Tài khoản" DisplayMemberBinding="{Binding account_type}"></GridViewColumn>
-                            <GridViewColumn Width="150" Header="Gmail Thanh Toán" DisplayMemberBinding="{Binding payment_gmail}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="VideoID" DisplayMemberBinding="{Binding video_id}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Tên Video" DisplayMemberBinding="{Binding video_name}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Thời gian" DisplayMemberBinding="{Binding video_time}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Quốc gia" DisplayMemberBinding="{Binding video_rel_country}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Thể loại" DisplayMemberBinding="{Binding category.category_name}"></GridViewColumn>
+                            <GridViewColumn Width="120" Header="Ngày ra mắt" DisplayMemberBinding="{Binding release_date,StringFormat=d,ConverterCulture=fr-FR}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Giám đốc" DisplayMemberBinding="{Binding director}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Biên kịch" DisplayMemberBinding="{Binding writers}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Diễn viên" DisplayMemberBinding="{Binding stars}"></GridViewColumn>
+                            <GridViewColumn Width="120" Header="Điểm đánh giá" DisplayMemberBinding="{Binding rating}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
 
-            <Grid Margin="196,350,0,0" Grid.Column="1">
+            <Grid Margin="20,350,0,0" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="255*"/>
-                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="255*"/>
+                    <ColumnDefinition Width="100*"/>
                     <ColumnDefinition Width="277"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -96,26 +100,32 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="UserID:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,2,7"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Họ Tên:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,5,7"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Ngày Sinh:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,3,7"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Tài khoản:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Mật khẩu:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,0,7"/>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="Loại tài khoản:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,3,7"/>
-                <TextBlock Grid.Column="2" Grid.Row="2" Text="Gmai thanh toán:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
-                <TextBox IsEnabled="False"  Width="200" Grid.Column="1" Grid.Row="0" Name="txtUserID" Text="{Binding UserID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="1" Grid.Row="1" Name="txtName" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <DatePicker DisplayDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="1" Grid.Row="2" Name="datePickerBirthday"  SelectedDate="{Binding Birthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtAccount" Text="{Binding Account,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="0" Name="txtPassword" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="1" Name="txtAccountType" Text="{Binding Type,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
-                <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtGmail" Text="{Binding Gmail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="VideoID:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,2,7"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Tên Video:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,5,7"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Thời gian:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,3,7"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Quốc gia:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Thể loại:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,0,7"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="Ngày ra mắt:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,3,7"/>
+                <TextBlock Grid.Column="2" Grid.Row="2" Text="Giám đốc:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
+                <TextBlock Grid.Column="2" Grid.Row="3" Text="Biên kịch:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
+                <TextBlock Grid.Column="4" Grid.Row="0" Text="Diễn viên:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
+                <TextBlock Grid.Column="4" Grid.Row="1" Text="Điểm đánh giá:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,4,7"/>
+                <TextBox IsEnabled="False"  Width="200" Grid.Column="1" Grid.Row="0" Name="txtVideoID" Text="{Binding VideoID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="1" Grid.Row="1" Name="txtVideoName" Text="{Binding VideoName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="1" Grid.Row="2" Name="txtTime" Text="{Binding VideoTime,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="1" Grid.Row="3" Name="txtCountry" Text="{Binding RelCountry,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="3" Grid.Row="0" Name="txtType" Text="{Binding VideoType,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <DatePicker DisplayDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Grid.Column="3" Grid.Row="1" Name="txtRelDate"  SelectedDate="{Binding RelDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=d,ConverterCulture=fr-FR}" Style="{StaticResource MaterialDesignDatePicker}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="3" Grid.Row="2" Name="txtDirector" Text="{Binding Director,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="3" Grid.Row="3" Name="txtWriter" Text="{Binding Writer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="5" Grid.Row="0" Name="txtStar" Text="{Binding Stars,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
+                <TextBox Width="200" Grid.Column="5" Grid.Row="1" Name="txtRating" Text="{Binding Rating,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Margin="8,4,74,3"/>
             </Grid>
             <WrapPanel Margin="346,500,0,0" Grid.Column="1">
                 <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
                 <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
                 <Button Command="{Binding DeleteCommand}" Content="Xoá" Margin="5" Width="100"></Button>
-            </WrapPanel>-->
+            </WrapPanel>
         </Grid>
 
         <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">

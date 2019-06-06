@@ -3,6 +3,6 @@
                     xmlns:viewmodel="clr-namespace:Netflix.ViewModel"
                     xmlns:local="clr-namespace:Netflix.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
-    <viewmodel:AdminViewModel x:Key="AdminAccountVM"></viewmodel:AdminViewModel>
+    <viewmodel:AdminQLTKViewModel x:Key="AdminAccountVM"></viewmodel:AdminQLTKViewModel>
     <viewmodel:AdminVideoViewModel x:Key="AdminVideoVM"></viewmodel:AdminVideoViewModel>
 </ResourceDictionary>
