@@ -35,7 +35,7 @@ namespace Netflix
             AdminQLTKWindow adminQLTKWindow = new AdminQLTKWindow();
             adminQLTKWindow.ShowDialog();
             this.Visibility = Visibility.Visible;
-            // test up 2
+            // test up 3
         }
     }
 }
